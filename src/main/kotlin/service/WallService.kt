@@ -12,7 +12,8 @@ object WallService {
     }
 
     fun addPost(post: Post): Post {
-        val newPost = post.copy(id = nextPostId)
+        var newPost = post.copy(id = nextPostId)
+        newPost.attachments = post.attachments.copyOf()
         nextPostId++
 
         postArr += newPost
@@ -35,6 +36,7 @@ object WallService {
         }
 
         postArr[foundIndex] = post.copy()
+        postArr[foundIndex].attachments = post.attachments.copyOf()
 
         return true
     }

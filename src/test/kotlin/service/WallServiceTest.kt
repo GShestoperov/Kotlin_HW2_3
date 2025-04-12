@@ -1,6 +1,8 @@
 package service
 
+import data.PhotoAttachment
 import data.Post
+import data.VideoAttachment
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -15,23 +17,54 @@ class WallServiceTest {
 
     @Test
    fun addPost() {
-    val result = WallService.addPost(
-          Post(
-           id = 0,
-           ownerId = 1,
-           fromId = 1,
-           date = 100
-          )
-    )
+       val result = WallService.addPost(
+           Post(
+            id = 0,
+            ownerId = 1,
+            fromId = 1,
+            date = 100,
+            attachments = arrayOf(
+                PhotoAttachment(
+                    type = "photo",
+                    id = 1,
+                    ownerId = 1,
+                    date = 100,
+                    url = "link.ru/photo.jpg"
+                ),
+                VideoAttachment(
+                    type = "video",
+                    id = 2,
+                    ownerId = 1,
+                    date = 200,
+                    url = "link.ru/video.mp4"
+                )
+            )
+         )
+     )
 
     assertEquals(result, Post(
-     id = 1,
-     ownerId = 1,
-     fromId = 1,
-     date = 100
+        id = 1,
+        ownerId = 1,
+        fromId = 1,
+        date = 100,
+        attachments = arrayOf(
+            PhotoAttachment(
+                type = "photo",
+                id = 1,
+                ownerId = 1,
+                date = 100,
+                url = "link.ru/photo.jpg"
+            ),
+            VideoAttachment(
+                type = "video",
+                id = 2,
+                ownerId = 1,
+                date = 200,
+                url = "link.ru/video.mp4"
+            )
+        )
+      )
     )
-    )
-
    }
 
    @Test
