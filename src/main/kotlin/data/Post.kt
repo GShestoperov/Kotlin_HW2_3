@@ -11,10 +11,10 @@ data class Post(
     val likes: Likes = Likes(),
     val isFavorite: Boolean = false,
     val postType: String = "post", // Тип записи, может принимать следующие значения: post, copy, reply, postpone, suggest
-    val content: String = ""
+    val text: String = ""
 ) {
 
     override fun toString(): String {
-        return "Post(id=$id, ownerId=$ownerId, fromId=$fromId, date=$date, replyOwnerId=$replyOwnerId, replyPostId=$replyPostId, comments=$comments, likes=$likes, isFavorite=$isFavorite, postType='$postType', content='$content')\n"
+        return "Post(id=$id, ownerId=$ownerId, fromId=$fromId, date=$date, replyOwnerId=$replyOwnerId, replyPostId=$replyPostId, comments=$comments, likes=$likes, isFavorite=$isFavorite, postType='$postType', text='$text')\n"
     }
 }
