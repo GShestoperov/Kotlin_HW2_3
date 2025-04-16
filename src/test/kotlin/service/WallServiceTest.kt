@@ -1,8 +1,6 @@
 package service
 
-import data.PhotoAttachment
-import data.Post
-import data.VideoAttachment
+import data.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -16,105 +14,122 @@ class WallServiceTest {
     }
 
     @Test
-   fun addPost() {
-       val result = WallService.addPost(
-           Post(
-            id = 0,
-            ownerId = 1,
-            fromId = 1,
-            date = 100,
-            attachments = arrayOf(
-                PhotoAttachment(
-                    type = "photo",
-                    id = 1,
-                    ownerId = 1,
-                    date = 100,
-                    url = "link.ru/photo.jpg"
-                ),
-                VideoAttachment(
-                    type = "video",
-                    id = 2,
-                    ownerId = 1,
-                    date = 200,
-                    url = "link.ru/video.mp4"
+    fun addPost() {
+        val result = WallService.addPost(
+            Post(
+                id = 0,
+                ownerId = 1,
+                fromId = 1,
+                date = 100,
+                attachments = arrayOf(
+                    PhotoAttachment(
+                        Photo(
+                            id = 1,
+                            ownerId = 1,
+                            date = 100,
+                            url = "link.ru/photo.jpg"
+                        )
+                    ),
+                    VideoAttachment(
+                        Video(
+                            id = 2,
+                            ownerId = 1,
+                            date = 200,
+                            url = "link.ru/video.mp4"
+                        )
+                    )
                 )
             )
-         )
-     )
+        )
 
-    assertEquals(result, Post(
-        id = 1,
-        ownerId = 1,
-        fromId = 1,
-        date = 100,
-        attachments = arrayOf(
-            PhotoAttachment(
-                type = "photo",
+        assertEquals(
+            result, Post(
                 id = 1,
                 ownerId = 1,
+                fromId = 1,
                 date = 100,
-                url = "link.ru/photo.jpg"
-            ),
-            VideoAttachment(
-                type = "video",
-                id = 2,
-                ownerId = 1,
-                date = 200,
-                url = "link.ru/video.mp4"
+                attachments = arrayOf(
+                    PhotoAttachment(
+                        Photo(
+                            id = 1,
+                            ownerId = 1,
+                            date = 100,
+                            url = "link.ru/photo.jpg"
+                        )
+                    ),
+                    VideoAttachment(
+                        Video(
+                            id = 2,
+                            ownerId = 1,
+                            date = 200,
+                            url = "link.ru/video.mp4"
+                        )
+                    )
+                )
             )
         )
-      )
-    )
-   }
+    }
 
-   @Test
-   fun updatePost_test1() {
+    @Test
+    fun updatePost_test1() {
 
-       WallService.addPost(Post(
-           id = 0,
-           ownerId = 1,
-           fromId = 1,
-           date = 100
-       ))
-       WallService.addPost(Post(
-           id = 0,
-           ownerId = 2,
-           fromId = 2,
-           date = 150
-       ))
+        WallService.addPost(
+            Post(
+                id = 0,
+                ownerId = 1,
+                fromId = 1,
+                date = 100
+            )
+        )
+        WallService.addPost(
+            Post(
+                id = 0,
+                ownerId = 2,
+                fromId = 2,
+                date = 150
+            )
+        )
 
-       val result = WallService.updatePost(Post(
-           id = 1,
-           ownerId = 10,
-           fromId = 10,
-           date = 250
-       ))
+        val result = WallService.updatePost(
+            Post(
+                id = 1,
+                ownerId = 10,
+                fromId = 10,
+                date = 250
+            )
+        )
 
-       assertTrue(result)
-   }
+        assertTrue(result)
+    }
 
     @Test
     fun updatePost_test2() {
 
-        WallService.addPost(Post(
-            id = 0,
-            ownerId = 1,
-            fromId = 1,
-            date = 100
-        ))
-        WallService.addPost(Post(
-            id = 0,
-            ownerId = 2,
-            fromId = 2,
-            date = 150
-        ))
+        WallService.addPost(
+            Post(
+                id = 0,
+                ownerId = 1,
+                fromId = 1,
+                date = 100
+            )
+        )
+        WallService.addPost(
+            Post(
+                id = 0,
+                ownerId = 2,
+                fromId = 2,
+                date = 150
+            )
+        )
 
-        val result = WallService.updatePost(Post(
-            id = 3,
-            ownerId = 10,
-            fromId = 10,
-            date = 250
-        ))
+        val result = WallService.updatePost(
+            Post(
+                id = 3,
+                ownerId = 10,
+                fromId = 10,
+                date = 250
+            )
+        )
 
         assertFalse(result)
     }

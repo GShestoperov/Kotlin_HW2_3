@@ -12,11 +12,16 @@ object WallService {
     }
 
     fun addPost(post: Post): Post {
-        var newPost = post.copy(id = nextPostId)
-        newPost.attachments = post.attachments.copyOf()
-        nextPostId++
+        var newPost = post.copy(
+            id = nextPostId,
+            comments = post.comments.copy(),
+            likes = post.likes.copy(),
+            attachments = post.attachments.copyOf()
+        )
 
         postArr += newPost
+
+        nextPostId++
 
         return postArr.last()
     }
@@ -35,8 +40,11 @@ object WallService {
             return false
         }
 
-        postArr[foundIndex] = post.copy()
-        postArr[foundIndex].attachments = post.attachments.copyOf()
+        postArr[foundIndex] = post.copy(
+            comments = post.comments.copy(),
+            likes = post.likes.copy(),
+            attachments = post.attachments.copyOf()
+        )
 
         return true
     }
@@ -47,6 +55,7 @@ object WallService {
         for (post in postArr) {
             str += "-----------------------------------------------------\n"
             str += post
+            str += "\n"
         }
 
         return str
