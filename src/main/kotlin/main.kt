@@ -1,6 +1,4 @@
-import data.PhotoAttachment
-import data.Post
-import data.VideoAttachment
+import data.*
 import service.WallService
 
 fun main() {
@@ -13,18 +11,20 @@ fun main() {
             date = 100,
             attachments = arrayOf(
                 PhotoAttachment(
-                    type = "photo",
-                    id = 1,
-                    ownerId = 1,
-                    date = 100,
-                    url = "link.ru/photo.jpg"
+                    Photo(
+                        id = 1,
+                        ownerId = 1,
+                        date = 100,
+                        url = "link.ru/photo.jpg"
+                    )
                 ),
                 VideoAttachment(
-                    type = "video",
-                    id = 2,
-                    ownerId = 1,
-                    date = 200,
-                    url = "link.ru/video.mp4"
+                    Video(
+                        id = 2,
+                        ownerId = 1,
+                        date = 200,
+                        url = "link.ru/video.mp4"
+                    )
                 )
             )
         )
